@@ -1,7 +1,8 @@
 import React from 'react';
 import ListItem from '@/components/ListItem';
 
-const List = ({ list }) => {
+
+  export default React.memo(({ list }) => {
     console.log('List:',list);
     return (
       <ul>
@@ -10,6 +11,4 @@ const List = ({ list }) => {
         ))}
       </ul>
     );
-  };
-
-  export default List;
+  });
