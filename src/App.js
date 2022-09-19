@@ -33,7 +33,7 @@ const App = () => {
   );
  };
  
- const Todo = ({ list }) => {
+ const Todo = React.memo(({ list }) => {
   console.log("Todo:", list);
    return (
     <ul>
@@ -42,11 +42,11 @@ const App = () => {
       ))}
     </ul>
   );
- };
+ });
  
- const TodoItem = ({ item }) => {
+ const TodoItem = React.memo(({ item}) => {
   console.log("TodoItem:", item);
    return <li>{item.title}</li>;
- };
+ });
  
 export default App;
