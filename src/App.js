@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Child from '@/components/child';
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {time: new Date()};
+  }
 
-import './App.css';
+  componentDidMount(){
+    setInterval(() => {
+      this.setState({
+        time: new Date()
+      })
+    }, 1000);
+  }
 
-function App() {
-  return (
-    <div className='App'>
-      App
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <Child seconds={1}/>
+        {this.state.time.toString()}
+      </div>
+    );
+  }
 }
 
 export default App;
