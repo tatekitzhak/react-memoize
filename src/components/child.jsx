@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Child({seconds}) {
-    console.log('Child:',seconds)
+    console.log('Child:', seconds)
     return (
         <div>
             Im updating every {seconds} seconds
@@ -9,4 +9,4 @@ function Child({seconds}) {
     );
 }
 
-export default Child;
+export default React.memo(Child);
