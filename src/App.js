@@ -1,27 +1,52 @@
 import React, { Component } from 'react';
-import Child from '@/components/child';
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {time: new Date()};
-  }
 
-  componentDidMount(){
-    setInterval(() => {
-      this.setState({
-        time: new Date()
-      })
-    }, 1000);
-  }
+const App = () => {
+  console.log("App component render");
 
-  render() {
-    return (
-      <div>
-        <Child seconds={1}/>
-        {this.state.time.toString()}
-      </div>
-    );
-  }
-}
-
+  const [todo, setTodo] = React.useState([
+    { title: "Shop groceries 🛒" },
+    { title: "Do yoga 🧘" }
+  ]);
+ 
+  const [text, setText] = React.useState("");
+ 
+  const handleText = (e) => {
+    setText(e.target.value);
+  };
+ 
+  const handleAddTodo = () => {
+    setTodo(todo.concat({ title: text }));
+  };
+ 
+  return (
+    <div>
+      <input type="text" value={text} onChange={handleText} />
+      <button type="button" onClick={handleAddTodo}>
+        <span role="img" aria-label="add emojie">
+          ➕
+        </span>
+        Add todo
+      </button>
+ 
+      <Todo list={todo} />
+    </div>
+  );
+ };
+ 
+ const Todo = ({ list }) => {
+  console.log("Todo:", list);
+   return (
+    <ul>
+      {list.map((item, key) => (
+        <TodoItem item={item} key={key}/>
+      ))}
+    </ul>
+  );
+ };
+ 
+ const TodoItem = ({ item }) => {
+  console.log("TodoItem:", item);
+   return <li>{item.title}</li>;
+ };
+ 
 export default App;
