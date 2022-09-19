@@ -1,6 +1,5 @@
-import React, { useState }from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import Child from '@/components/Child';
+import React from 'react';
+
 /**
  
 Custom equality check of props
@@ -12,23 +11,23 @@ React.memo(Component, [areEqual(prevProps, nextProps)]);
 areEqual(prevProps, nextProps) function must return true if prevProps and nextProps are equal.
  */
 
-function App() {
-  const [id, setId] = useState(uuidv4);
-
-  console.log("App:");
-
-  function onClick() {
-    setId(uuidv4);
+function areEqual(prevProps, nextProps) {
+  if (prevProps.id !== nextProps.id) {
+    console.log("areEqual (prevProps, nextProps):",prevProps, nextProps);
+    return false
   }
+  return true;
+}
+
+function Child({ id }) {
+  console.log("Child:",id);
 
   return (
-    <div className="App">
-      <h1>fc React.memo Child</h1>
-
-      <button onClick={onClick}>change id</button>
-      <Child id={id} />
+    <div>
+      <h2>Child ID</h2>
+      <div>{id}</div>
     </div>
   );
 }
 
-export default App;
+export default React.memo(Child, areEqual);

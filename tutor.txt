@@ -1,1 +1,1 @@
-https://www.robinwieruch.de/react-memo/
+https://codesandbox.io/s/reactmemo-areequal-s1uj1?from-embed=&file=/src/index.js
