@@ -1,52 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import List from '@/components/List';
+
 
 const App = () => {
-  console.log("App component render");
-
-  const [todo, setTodo] = React.useState([
-    { title: "Shop groceries 🛒" },
-    { title: "Do yoga 🧘" }
+  const [users, setUsers] = React.useState([
+    { id: 'a', name: 'Robin' },
+    { id: 'b', name: 'Dennis' },
   ]);
- 
-  const [text, setText] = React.useState("");
- 
-  const handleText = (e) => {
-    setText(e.target.value);
+
+  const [text, setText] = React.useState('');
+
+  const handleText = (event) => {
+    setText(event.target.value);
   };
- 
-  const handleAddTodo = () => {
-    setTodo(todo.concat({ title: text }));
+
+  const handleAddUser = () => {
+    setUsers(users.concat({ id: uuidv4(), name: text }));
   };
- 
+  console.log('Render: App');
   return (
     <div>
       <input type="text" value={text} onChange={handleText} />
-      <button type="button" onClick={handleAddTodo}>
-        <span role="img" aria-label="add emojie">
-          ➕
-        </span>
-        Add todo
+      <button type="button" onClick={handleAddUser}>
+        Add User
       </button>
- 
-      <Todo list={todo} />
+
+      <List list={users} />
     </div>
   );
- };
- 
- const Todo = React.memo(({ list }) => {
-  console.log("Todo:", list);
-   return (
-    <ul>
-      {list.map((item, key) => (
-        <TodoItem item={item} key={key}/>
-      ))}
-    </ul>
-  );
- });
- 
- const TodoItem = React.memo(({ item}) => {
-  console.log("TodoItem:", item);
-   return <li>{item.title}</li>;
- });
- 
+};
+
 export default App;
